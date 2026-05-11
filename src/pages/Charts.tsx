@@ -12,7 +12,7 @@ const Charts = () => {
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
 
-    // 1. نمودار جنسیت
+    // نمودار جنسیت
     const maleCount = users.filter((u: any) => u.gender === "male").length;
     const femaleCount = users.filter((u: any) => u.gender === "female").length;
     const otherCount = users.filter((u: any) => u.gender === "other").length;
@@ -22,19 +22,18 @@ const Charts = () => {
       { name: "سایر", value: otherCount },
     ]);
 
-    // 2. نمودار وضعیت فعال/غیرفعال (میله‌ای)
+    // نمودار فعال/غیرفعال
     const activeCount = users.filter((u: any) => u.status === "active").length;
     const deactiveCount = users.filter((u: any) => u.status === "deactive").length;
     setStatusData([{ name: "وضعیت", active: activeCount, deactive: deactiveCount }]);
 
-    // 3. نمودار روند رشد (بر اساس id که تقریباً زمان ثبت را نشان می‌دهد)
-    // مرتب‌سازی کاربران بر اساس id (قدیمی‌ترین اول)
+    // روند رشد (بر اساس id)
     const sorted = [...users].sort((a, b) => a.id - b.id);
-    const trend = sorted.map((user, idx) => ({
+    const trend = sorted.map((_, idx) => ({
       name: `کاربر ${idx + 1}`,
       users: idx + 1,
     }));
-    setTrendData(trend.slice(-10)); // فقط ۱۰ کاربر آخر برای خوانایی
+    setTrendData(trend.slice(-10));
   }, []);
 
   const COLORS = ["#3b82f6", "#ec489a", "#8b5cf6"];
@@ -44,13 +43,13 @@ const Charts = () => {
       <h1 style={{ marginBottom: "24px", fontSize: "28px" }}>📊 نمودارهای تحلیلی</h1>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
-        {/* نمودار دایره‌ای جنسیت */}
+        {/* نمودار جنسیت */}
         <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: "20px", border: "1px solid #2a2a2a" }}>
           <h3 style={{ textAlign: "center", marginBottom: "16px" }}>توزیع جنسیت</h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie data={genderData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
-                {genderData.map((entry, index) => (
+                {genderData.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
@@ -60,7 +59,7 @@ const Charts = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* نمودار میله‌ای وضعیت */}
+        {/* نمودار وضعیت */}
         <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: "20px", border: "1px solid #2a2a2a" }}>
           <h3 style={{ textAlign: "center", marginBottom: "16px" }}>وضعیت کاربران</h3>
           <ResponsiveContainer width="100%" height={250}>
@@ -76,7 +75,7 @@ const Charts = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* نمودار خطی رشد کاربران */}
+        {/* نمودار خطی رشد */}
         <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: "20px", border: "1px solid #2a2a2a" }}>
           <h3 style={{ textAlign: "center", marginBottom: "16px" }}>روند رشد (۱۰ کاربر آخر)</h3>
           <ResponsiveContainer width="100%" height={250}>
