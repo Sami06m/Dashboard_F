@@ -1,45 +1,48 @@
-import type { ReactNode } from "react";
+import { ReactNode } from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 type LayoutProps = {
   children: ReactNode;
 };
 
 const Layout = ({ children }: LayoutProps) => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <div
       style={{
         display: "flex",
+        flexDirection: isMobile ? "column" : "row",
         height: "100vh",
         background: "#0f0f0f",
-        padding: "24px",
-        gap: "24px",
+        padding: isMobile ? "12px" : "24px",
+        gap: isMobile ? "12px" : "24px",
       }}
     >
-      <Sidebar />
+      <Sidebar isMobile={isMobile} />
 
       <div
         style={{
           flex: 1,
           display: "flex",
           flexDirection: "column",
-          gap: "24px",
+          gap: isMobile ? "12px" : "24px",
         }}
       >
         <Topbar />
-
         <main
-  style={{
-    flex: 1,
-    background: "#1c1c1c",
-    borderRadius: "24px",
-    padding: "32px",
-    boxShadow: "0 12px 32px rgba(0,0,0,0.5)",
-    overflow: "auto",
-  }}>
-  {children}
-</main>
+          style={{
+            flex: 1,
+            background: "#1c1c1c",
+            borderRadius: "24px",
+            padding: isMobile ? "16px" : "32px",
+            overflow: "auto",
+          }}
+        >
+          {children}
+        </main>
       </div>
     </div>
   );

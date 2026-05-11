@@ -1,11 +1,15 @@
+import { useMediaQuery } from "../hooks/useMediaQuery";
+
 const Topbar = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <div
       style={{
-        height: "64px",
+        height: isMobile ? "56px" : "64px",
         background: "#1a1a1a",
         borderRadius: "20px",
-        padding: "0 24px",
+        padding: isMobile ? "0 16px" : "0 24px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -13,16 +17,15 @@ const Topbar = () => {
         color: "#fff",
       }}
     >
-      <div style={{ fontSize: "18px", fontWeight: 600 }}>
+      <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 600 }}>
         Dashboard
       </div>
-
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "16px",
-          fontSize: "14px",
+          gap: isMobile ? "8px" : "16px",
+          fontSize: isMobile ? "12px" : "14px",
           opacity: 0.9,
           cursor: "pointer",
         }}

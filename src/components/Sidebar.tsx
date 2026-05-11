@@ -1,47 +1,38 @@
 import { useNavigate } from "react-router-dom";
 
-const menuItems: string[] = [
-  "Overview",
-  "Analytics",
-  "Charts",
-  "Users",
-  "Settings",
-];
+const menuItems = ["Overview", "Charts", "Users", "Settings"];
 
-const Sidebar = () => {
+const Sidebar = ({ isMobile }: { isMobile: boolean }) => {
   const navigate = useNavigate();
 
   const handleNavigation = (item: string) => {
-  console.log("Navigating to:", item);
-  if (item === "Settings") navigate("/settings");
-  if (item === "Charts") navigate("/charts");
-  if (item === "Overview") {
-    window.location.href = "/";
-  } else if (item === "Users") {
-    window.location.href = "/users";
-  }
-};
+    if (item === "Overview") navigate("/");
+    else if (item === "Users") navigate("/users");
+    else if (item === "Charts") navigate("/charts");
+    else if (item === "Settings") navigate("/settings");
+  };
 
   return (
     <div
       style={{
-        width: "270px",
+        width: isMobile ? "100%" : "270px",
         background: "#181818",
         color: "#fff",
-        padding: "40px 24px",
+        padding: isMobile ? "12px 16px" : "40px 24px",
         borderRadius: "24px",
-        boxShadow: "0 12px 32px rgba(0,0,0,0.5)",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: isMobile ? "row" : "column",
         alignItems: "center",
+        justifyContent: isMobile ? "space-between" : "flex-start",
+        gap: isMobile ? "8px" : "0",
+        overflowX: "auto",
       }}
     >
       <h2
         style={{
-          marginBottom: "56px",
+          marginBottom: isMobile ? 0 : "56px",
+          fontSize: isMobile ? "16px" : "20px",
           letterSpacing: "3px",
-          fontWeight: 700,
-          fontSize: "20px",
         }}
       >
         DASHBOARD
@@ -51,7 +42,12 @@ const Sidebar = () => {
         style={{
           listStyle: "none",
           padding: 0,
+          margin: 0,
+          display: "flex",
+          flexDirection: isMobile ? "row" : "column",
+          gap: isMobile ? "8px" : "0",
           width: "100%",
+          justifyContent: isMobile ? "space-around" : "center",
         }}
       >
         {menuItems.map((item) => (
@@ -60,19 +56,16 @@ const Sidebar = () => {
             onClick={() => handleNavigation(item)}
             style={{
               textAlign: "center",
-              padding: "18px 0",
-              fontSize: "19px",
+              padding: isMobile ? "8px 12px" : "18px 0",
+              fontSize: isMobile ? "14px" : "19px",
               fontWeight: 500,
-              borderBottom: "1px solid #262626",
+              borderBottom: isMobile ? "none" : "1px solid #262626",
               cursor: "pointer",
               transition: "all 0.25s ease",
+              whiteSpace: "nowrap",
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.background = "#262626")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "transparent")
-            }
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#262626")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
           >
             {item}
           </li>

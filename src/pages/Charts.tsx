@@ -3,16 +3,17 @@ import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line,
   ResponsiveContainer
 } from "recharts";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const Charts = () => {
   const [genderData, setGenderData] = useState<{ name: string; value: number }[]>([]);
   const [statusData, setStatusData] = useState<{ name: string; active: number; deactive: number }[]>([]);
   const [trendData, setTrendData] = useState<{ name: string; users: number }[]>([]);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
 
-    // نمودار جنسیت
     const maleCount = users.filter((u: any) => u.gender === "male").length;
     const femaleCount = users.filter((u: any) => u.gender === "female").length;
     const otherCount = users.filter((u: any) => u.gender === "other").length;
@@ -22,12 +23,10 @@ const Charts = () => {
       { name: "سایر", value: otherCount },
     ]);
 
-    // نمودار فعال/غیرفعال
     const activeCount = users.filter((u: any) => u.status === "active").length;
     const deactiveCount = users.filter((u: any) => u.status === "deactive").length;
     setStatusData([{ name: "وضعیت", active: activeCount, deactive: deactiveCount }]);
 
-    // روند رشد (بر اساس id)
     const sorted = [...users].sort((a, b) => a.id - b.id);
     const trend = sorted.map((_, idx) => ({
       name: `کاربر ${idx + 1}`,
@@ -40,12 +39,12 @@ const Charts = () => {
 
   return (
     <div style={{ color: "#fff" }}>
-      <h1 style={{ marginBottom: "24px", fontSize: "28px" }}>📊 نمودارهای تحلیلی</h1>
+      <h1 style={{ marginBottom: "24px", fontSize: isMobile ? "24px" : "28px" }}>📊 نمودارهای تحلیلی</h1>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
         {/* نمودار جنسیت */}
-        <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: "20px", border: "1px solid #2a2a2a" }}>
-          <h3 style={{ textAlign: "center", marginBottom: "16px" }}>توزیع جنسیت</h3>
+        <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: isMobile ? "16px" : "20px", border: "1px solid #2a2a2a" }}>
+          <h3 style={{ textAlign: "center", marginBottom: "16px", fontSize: isMobile ? "16px" : "18px" }}>توزیع جنسیت</h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie data={genderData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
@@ -60,8 +59,8 @@ const Charts = () => {
         </div>
 
         {/* نمودار وضعیت */}
-        <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: "20px", border: "1px solid #2a2a2a" }}>
-          <h3 style={{ textAlign: "center", marginBottom: "16px" }}>وضعیت کاربران</h3>
+        <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: isMobile ? "16px" : "20px", border: "1px solid #2a2a2a" }}>
+          <h3 style={{ textAlign: "center", marginBottom: "16px", fontSize: isMobile ? "16px" : "18px" }}>وضعیت کاربران</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={statusData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#444" />
@@ -76,8 +75,8 @@ const Charts = () => {
         </div>
 
         {/* نمودار خطی رشد */}
-        <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: "20px", border: "1px solid #2a2a2a" }}>
-          <h3 style={{ textAlign: "center", marginBottom: "16px" }}>روند رشد (۱۰ کاربر آخر)</h3>
+        <div style={{ background: "#1c1c1c", borderRadius: "20px", padding: isMobile ? "16px" : "20px", border: "1px solid #2a2a2a" }}>
+          <h3 style={{ textAlign: "center", marginBottom: "16px", fontSize: isMobile ? "16px" : "18px" }}>روند رشد (۱۰ کاربر آخر)</h3>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={trendData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#444" />
