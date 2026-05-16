@@ -53,13 +53,13 @@ const Settings = () => {
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
     setUser(updatedUser);
-    setMessage("پروفایل با موفقیت به‌روزرسانی شد.");
+    setMessage("Profile updated successfully.");
     setTimeout(() => setMessage(""), 3000);
   };
 
   const handleDeleteAccount = () => {
     if (!user) return;
-    const confirmDelete = window.confirm("آیا از حذف حساب کاربری خود مطمئن هستی؟");
+    const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
     if (!confirmDelete) return;
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     const updatedUsers = users.filter((u: any) => u.id !== user.id);
@@ -77,7 +77,7 @@ const Settings = () => {
 
   return (
     <div style={{ color: "#fff", maxWidth: isMobile ? "100%" : "600px", margin: "0 auto", padding: isMobile ? "0 16px" : "0" }}>
-      <h1 style={{ marginBottom: "24px", fontSize: isMobile ? "24px" : "28px" }}>تنظیمات</h1>
+      <h1 style={{ marginBottom: "24px", fontSize: isMobile ? "24px" : "28px" }}>Settings</h1>
 
       {message && (
         <div style={{ background: "#4caf50", color: "#fff", padding: "12px", borderRadius: "12px", marginBottom: "20px", textAlign: "center" }}>
@@ -86,26 +86,25 @@ const Settings = () => {
       )}
 
       <div style={{ background: "#1c1c1c", padding: isMobile ? "20px" : "32px", borderRadius: "24px", border: "1px solid #2a2a2a" }}>
-        <h2 style={{ marginBottom: "24px", fontSize: isMobile ? "18px" : "20px" }}>ویرایش پروفایل</h2>
+        <h2 style={{ marginBottom: "24px", fontSize: isMobile ? "18px" : "20px" }}>Edit Profile</h2>
 
-        <input name="fname" placeholder="نام" value={form.fname} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
-        <input name="lname" placeholder="نام خانوادگی" value={form.lname} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
-        <input name="email" type="email" placeholder="ایمیل" value={form.email} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
-        <input name="password" type="password" placeholder="رمز جدید (در صورت تمایل)" value={form.password} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
+        <input name="fname" placeholder="First Name" value={form.fname} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
+        <input name="lname" placeholder="Last Name" value={form.lname} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
+        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
+        <input name="password" type="password" placeholder="New Password (leave blank to keep current)" value={form.password} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
 
         <button onClick={handleUpdateProfile} style={{ ...buttonStyle, background: "#3b82f6", width: "100%", padding: isMobile ? "10px" : "12px" }}>
-          ذخیره تغییرات
+          Save Changes
         </button>
 
         <hr style={{ margin: "32px 0", borderColor: "#333" }} />
 
-        <h2 style={{ marginBottom: "16px", fontSize: isMobile ? "18px" : "20px" }}>خطر!</h2>
         <button onClick={handleDeleteAccount} style={{ ...buttonStyle, background: "#ef4444", width: "100%", marginBottom: "16px", padding: isMobile ? "10px" : "12px" }}>
-          حذف حساب کاربری
+          Delete Account
         </button>
 
         <button onClick={handleLogout} style={{ ...buttonStyle, background: "#555", width: "100%", padding: isMobile ? "10px" : "12px" }}>
-          خروج از حساب
+          Logout
         </button>
       </div>
     </div>

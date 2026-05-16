@@ -14,6 +14,7 @@ const Dashboard = () => {
     <div style={{ color: "#fff" }}>
       <h1 style={{ marginBottom: "24px", fontSize: isMobile ? "24px" : "28px" }}>Overview</h1>
 
+      {/* بخش فارسی با راست‌چینی */}
       <div
         style={{
           background: "#1c1c1c",
@@ -21,12 +22,14 @@ const Dashboard = () => {
           padding: isMobile ? "16px" : "24px",
           marginBottom: "32px",
           border: "1px solid #2a2a2a",
+          direction: "rtl", // راست‌چین
+          textAlign: "right", // تراز راست
         }}
       >
-        <h2 style={{ marginBottom: "16px", fontSize: isMobile ? "18px" : "20px" }}>
+        <h2 style={{ marginBottom: "16px", fontSize: isMobile ? "18px" : "20px", textAlign: "right" }}>
           📋 امکانات داشبورد
         </h2>
-        <ul style={{ lineHeight: "1.8", paddingLeft: "20px", fontSize: isMobile ? "14px" : "16px" }}>
+        <ul style={{ lineHeight: "1.8", paddingRight: "20px", paddingLeft: 0, fontSize: isMobile ? "14px" : "16px" }}>
           <li>✅ مدیریت کاربران (مشاهده، جستجو، مرتب‌سازی، صفحه‌بندی)</li>
           <li>✅ نقش‌های ادمین و کاربر معمولی با دسترسی‌های متفاوت</li>
           <li>✅ افزودن، ویرایش و حذف کاربر (فقط ادمین)</li>
@@ -36,6 +39,7 @@ const Dashboard = () => {
         </ul>
       </div>
 
+      {/* کارت آمار (بدون تغییر) */}
       <div
         style={{
           background: "#1c1c1c",
@@ -48,7 +52,7 @@ const Dashboard = () => {
           {totalUsers}
         </div>
         <div style={{ fontSize: isMobile ? "14px" : "18px", color: "#aaa" }}>
-          تعداد کل کاربران ثبت‌شده
+          Total Users 
         </div>
       </div>
     </div>

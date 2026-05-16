@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -8,9 +9,17 @@ import Login from "./pages/Login";
 import Settings from "./pages/Settings";
 import Charts from "./pages/Charts";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { defaultUsers } from "./data/defaultUsers";
+import Profile from "./pages/profile";
 
 
 function App() {
+  useEffect(() => {
+    const existingUsers = localStorage.getItem("users");
+    if (!existingUsers) {
+      localStorage.setItem("users", JSON.stringify(defaultUsers));
+    }
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
@@ -21,6 +30,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
          <Route path="/settings" element={<ProtectedRoute><Layout><Settings /></Layout></ProtectedRoute>} />
           <Route path="/charts" element={<ProtectedRoute><Layout><Charts /></Layout></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Layout><Profile /></Layout></ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>
   );

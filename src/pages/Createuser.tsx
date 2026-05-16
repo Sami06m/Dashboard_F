@@ -128,7 +128,6 @@ const CreateUser = () => {
         <select name="gender" value={form.gender} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }}>
           <option value="male">Male</option>
           <option value="female">Female</option>
-          <option value="other">Other</option>
         </select>
 
         <input name="age" type="number" placeholder="Age" value={form.age} onChange={handleChange} style={{ ...inputStyle, padding: isMobile ? "10px" : "12px", marginBottom: "16px" }} />
