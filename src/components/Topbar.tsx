@@ -17,7 +17,6 @@ const avatarGallery = [
 const Topbar = ({
   isMobile,
   toggleMenu,
-  isMenuOpen,
 }: {
   isMobile: boolean;
   toggleMenu?: () => void;
