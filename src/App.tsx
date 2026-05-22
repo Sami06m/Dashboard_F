@@ -12,7 +12,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { defaultUsers } from "./data/defaultUsers";
 import Profile from "./pages/profile";
 
-
 function App() {
   useEffect(() => {
     const existingUsers = localStorage.getItem("users");

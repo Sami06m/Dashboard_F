@@ -12,9 +12,12 @@ const Dashboard = () => {
 
   return (
     <div style={{ color: "#fff" }}>
-      <h1 style={{ marginBottom: "24px", fontSize: isMobile ? "24px" : "28px" }}>Overview</h1>
+      <h1
+        style={{ marginBottom: "24px", fontSize: isMobile ? "24px" : "28px" }}
+      >
+        Overview
+      </h1>
 
-      {/* بخش فارسی با راست‌چینی */}
       <div
         style={{
           background: "#1c1c1c",
@@ -22,24 +25,44 @@ const Dashboard = () => {
           padding: isMobile ? "16px" : "24px",
           marginBottom: "32px",
           border: "1px solid #2a2a2a",
-          direction: "rtl", // راست‌چین
-          textAlign: "right", // تراز راست
+          textAlign: "left",
         }}
       >
-        <h2 style={{ marginBottom: "16px", fontSize: isMobile ? "18px" : "20px", textAlign: "right" }}>
-          📋 امکانات داشبورد
+        <h2
+          style={{ marginBottom: "16px", fontSize: isMobile ? "18px" : "20px" }}
+        >
+          📋 Dashboard Features
         </h2>
-        <ul style={{ lineHeight: "1.8", paddingRight: "20px", paddingLeft: 0, fontSize: isMobile ? "14px" : "16px" }}>
-          <li>✅ مدیریت کاربران (مشاهده، جستجو، مرتب‌سازی، صفحه‌بندی)</li>
-          <li>✅ نقش‌های ادمین و کاربر معمولی با دسترسی‌های متفاوت</li>
-          <li>✅ افزودن، ویرایش و حذف کاربر (فقط ادمین)</li>
-          <li>✅ فعال/غیرفعال کردن کاربران (فقط ادمین)</li>
-          <li>✅ سیستم لاگین و ثبت‌نام امن با LocalStorage</li>
-          <li>✅ تم دارک یکپارچه و واکنش‌گرا</li>
+        <ul
+          style={{
+            lineHeight: "1.8",
+            paddingLeft: "20px",
+            fontSize: isMobile ? "14px" : "16px",
+          }}
+        >
+          <li>
+            Complete user management (search, sort, pagination, export to Excel)
+          </li>
+          <li>
+            Role‑based access control (Admin with full access, Regular user with
+            limited access)
+          </li>
+          <li>
+            Admin operations (add, edit, delete, activate/deactivate users)
+          </li>
+          <li>
+            Personal profile (avatar gallery, edit information, delete account)
+          </li>
+          <li>
+            Analytics charts (gender distribution, user status, growth trend)
+          </li>
+          <li>
+            Fully responsive design (hamburger menu on mobile, unified dark
+            theme)
+          </li>
         </ul>
       </div>
 
-      {/* کارت آمار (بدون تغییر) */}
       <div
         style={{
           background: "#1c1c1c",
@@ -48,11 +71,17 @@ const Dashboard = () => {
           textAlign: "center",
         }}
       >
-        <div style={{ fontSize: isMobile ? "36px" : "48px", fontWeight: "bold", marginBottom: "8px" }}>
+        <div
+          style={{
+            fontSize: isMobile ? "36px" : "48px",
+            fontWeight: "bold",
+            marginBottom: "8px",
+          }}
+        >
           {totalUsers}
         </div>
         <div style={{ fontSize: isMobile ? "14px" : "18px", color: "#aaa" }}>
-          Total Users 
+          Total users
         </div>
       </div>
     </div>

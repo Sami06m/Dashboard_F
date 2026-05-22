@@ -22,53 +22,57 @@ const Sidebar = ({
   if (isMobile) {
     //  (موبایل)
 
-return (
-  <div
-    style={{
-      padding: "32px 20px",
-      height: "100%",
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-      backgroundColor: "#181818", // پس‌زمینه تیره
-      color: "#fff", // رنگ همه متن‌ها سفید
-    }}
-  >
-    <h2
-      style={{
-        fontSize: "20px",
-        letterSpacing: "3px",
-        marginBottom: "20px",
-        color: "#fff", // سفید
-      }}
-    >
-      DASHBOARD
-    </h2>
-    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-      {menuItems.map((item) => (
-        <li
-          key={item}
-          onClick={() => handleNavigation(item)}
+    return (
+      <div
+        style={{
+          padding: "32px 20px",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          backgroundColor: "#181818", // پس‌زمینه تیره
+          color: "#fff", // رنگ همه متن‌ها سفید
+        }}
+      >
+        <h2
           style={{
-            padding: "14px 0",
-            fontSize: "18px",
-            cursor: "pointer",
-            borderBottom: "1px solid #262626",
-            transition: "0.2s",
+            fontSize: "20px",
+            letterSpacing: "3px",
+            marginBottom: "20px",
             color: "#fff", // سفید
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#262626")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
         >
-          {item}
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-}
+          DASHBOARD
+        </h2>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          {menuItems.map((item) => (
+            <li
+              key={item}
+              onClick={() => handleNavigation(item)}
+              style={{
+                padding: "14px 0",
+                fontSize: "18px",
+                cursor: "pointer",
+                borderBottom: "1px solid #262626",
+                transition: "0.2s",
+                color: "#fff", // سفید
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#262626")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "transparent")
+              }
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 
-  // نمایش دسکتاپ 
+  // نمایش دسکتاپ
   return (
     <div
       style={{
@@ -108,7 +112,9 @@ return (
               transition: "all 0.25s ease",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#262626")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "transparent")
+            }
           >
             {item}
           </li>

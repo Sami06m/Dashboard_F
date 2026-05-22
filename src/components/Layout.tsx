@@ -26,7 +26,7 @@ const Layout = ({ children }: LayoutProps) => {
         position: "relative",
       }}
     >
-      {/* در دسکتاپ: سایدبار به صورت کناری و همیشه باز */}
+      {/* دسکتاپ */}
       {!isMobile && (
         <div style={{ display: "flex", gap: "24px", flex: 1 }}>
           <Sidebar isMobile={false} />
@@ -38,7 +38,7 @@ const Layout = ({ children }: LayoutProps) => {
               gap: "24px",
             }}
           >
-            <Topbar isMobile={false} toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+            <Topbar isMobile={false} toggleMenu={toggleMenu} />
             <main
               style={{
                 flex: 1,
@@ -54,10 +54,17 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
       )}
 
-      {/* در موبایل: ساختار متفاوت (تاپبار + همبرگر) */}
+      {/* موبایل (بدون سایدبار ثابت) */}
       {isMobile && (
-        <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: "12px" }}>
-          <Topbar isMobile={true} toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+            gap: "12px",
+          }}
+        >
+          <Topbar isMobile={true} toggleMenu={toggleMenu} />
           <main
             style={{
               flex: 1,
@@ -72,10 +79,9 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
       )}
 
-      {/* منوی کشویی (Drawer) در موبایل */}
+      {/* Drawer سایدبار در موبایل */}
       {isMobile && isMenuOpen && (
         <>
-          {/* بک‌دراپ تیره */}
           <div
             onClick={closeMenu}
             style={{
@@ -88,7 +94,6 @@ const Layout = ({ children }: LayoutProps) => {
               zIndex: 1000,
             }}
           />
-          {/* خود سایدبار */}
           <div
             style={{
               position: "fixed",
