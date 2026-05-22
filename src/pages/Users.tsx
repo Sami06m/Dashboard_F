@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "../hooks/useMediaQuery";
-import { exportUsersToExcel } from "../utils/exelExport";
+import { exportUsersToExcel } from "../utils/excelExport";
 
 const Users = () => {
   const navigate = useNavigate();
